@@ -26,10 +26,6 @@
 
 [Ссылка на шрифт](https://rsms.me/inter/)  
 
-**Figma**
-
-[Ссылка на макет в Figma](https://www.figma.com/file/StZjf8HnoeLdiXS7dYrLAh/JavaScript.-Sprint-4?node-id=3%3A186)
-
 **Cайт**
  
 [Ссылка на сайт](https://yodji27.github.io/react-mesto-auth/)
