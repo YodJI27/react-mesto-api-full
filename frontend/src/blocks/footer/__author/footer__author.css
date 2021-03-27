@@ -1,0 +1,27 @@
+.footer__author {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    font-family: Inter, 'Arial', 'Helvetica';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #545454;
+}
+@media screen and (max-width: 907px)
+{
+    .footer__author {
+        margin-left: 27px;
+    }
+}
+@media screen and (max-width: 400px)
+{
+    .footer__author {
+        font-size: 14px;
+        line-height: 17px;
+    }
+}
