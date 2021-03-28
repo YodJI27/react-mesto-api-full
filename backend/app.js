@@ -26,6 +26,14 @@ mongoose
 
 app.use(bodyParser.json());
 
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,PATCH,POST,DELETE');
+
+  next();
+});
+
 app.use(requestLogger);
 
 app.use("/", auth, userRouter);
@@ -76,13 +84,6 @@ app.use((err, req, res, next) => {
   res
     .status(500)
     .send({ message: `На сервере произошла ошибка: ${err.message}` });
-  next();
-});
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,PATCH,POST,DELETE');
-
   next();
 });
 app.listen(PORT);
