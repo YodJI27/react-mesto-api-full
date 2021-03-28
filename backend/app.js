@@ -9,11 +9,20 @@ const NotFoundError = require("./errors/NotFoundError");
 const { errors } = require("celebrate");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 const { celebrate, Joi } = require("celebrate");
-const cors = require('cors');
+const cors = require("cors");
 
 const app = express();
 
 const PORT = 3000;
+
+const corsOptions = {
+  origin: '*',
+  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: ["Content-Type", "origin", "Authorization"],
+  credentials: true,
+};
 
 mongoose
   .connect("mongodb://localhost:27017/mestodb", {
@@ -25,20 +34,11 @@ mongoose
     console.log("Connected to DB");
   });
 
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
-
-
 app.use(requestLogger);
 app.use("/", auth, userRouter);
 app.use("/", auth, cardsRouter);
-
-const corsOptions = {
-  origin: '*',
-  methods: ['GET', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'POST'],
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
 
 app.get("/crash-test", () => {
   setTimeout(() => {
