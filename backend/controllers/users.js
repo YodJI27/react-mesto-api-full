@@ -102,23 +102,24 @@ module.exports.login = (req, res) => {
       if (!user) {
         return Promise.reject(new Error("Неправильные почта или пароль"));
       }
-      return bcrypt.compare(password, user.password);
-    })
-    .then((result) => {
-      if (!result) {
-        return Promise.reject(new Error("Неправильные почта или пароль"));
-      }
-      const { JWT_SECRET } = process.env;
-      const NODE_ENV = "dev";
-      const token = jwt.sign(
-        { _id: user._id },
-        NODE_ENV === "production" ? JWT_SECRET : "dev-secret",
-        { expiresIn: "7d" }
-      );
-      res.status(200).send({ token });
-    })
-    .catch((err) => {
-      res.status(401).send({ message: err.message });
+      return bcrypt
+        .compare(password, user.password)
+        .then((result) => {
+          if (!result) {
+            return Promise.reject(new Error("Неправильные почта или пароль"));
+          }
+          const { JWT_SECRET } = process.env;
+          const NODE_ENV = "dev";
+          const token = jwt.sign(
+            { _id: user._id },
+            NODE_ENV === "production" ? JWT_SECRET : "dev-secret",
+            { expiresIn: "7d" }
+          );
+          res.status(200).send({ token });
+        })
+        .catch((err) => {
+          res.status(401).send({ message: err.message });
+        });
     });
 };
 
