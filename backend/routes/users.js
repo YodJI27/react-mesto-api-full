@@ -21,6 +21,18 @@ router.get(
   auth,
   getUsers
 );
+router.get(
+  "/users/me",
+  celebrate({
+    headers: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
+  }),
+  auth,
+  getUsersMe
+);
 
 router.get(
   "/users/:id",
@@ -38,18 +50,6 @@ router.get(
   getProfile
 );
 
-router.get(
-  "/users/me",
-  celebrate({
-    headers: Joi.object()
-      .keys({
-        authorization: Joi.string().required(),
-      })
-      .unknown(),
-  }),
-  auth,
-  getUsersMe
-);
 
 router.patch(
   "/users/me",
