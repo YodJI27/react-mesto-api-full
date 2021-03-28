@@ -76,7 +76,7 @@ module.exports.updateAvatar = (req, res) => {
   const { id } = req.user._id;
   const { avatar } = req.body;
 
-  User.findByIdAndUpdate(id, { avatar }, { new: true })
+  User.findByIdAndUpdate({_id: id}, { avatar }, { new: true })
     .then((user) => {
       if (!user) {
         return res
