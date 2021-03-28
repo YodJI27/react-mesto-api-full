@@ -16,7 +16,12 @@ const app = express();
 const PORT = 3000;
 
 const corsOptions = {
-  origin: "*",
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'http://mesto.students.nomoredomains.club',
+    'https://mesto.students.nomoredomains.club/',
+    ],
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   preflightContinue: false,
   optionsSuccessStatus: 204,
