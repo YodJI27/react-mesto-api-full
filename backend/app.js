@@ -36,8 +36,6 @@ mongoose
 
 app.use(bodyParser.json());
 app.use(requestLogger);
-app.use("/", auth, userRouter);
-app.use("/", auth, cardsRouter);
 
 app.get("/crash-test", () => {
   setTimeout(() => {
@@ -70,7 +68,8 @@ app.post(
   }),
   createProfile
 );
-
+app.use("/", auth, userRouter);
+app.use("/", auth, cardsRouter);
 app.use((_) => {
   throw new NotFoundError('"Запрашиваемый ресурс не найден"');
 });
