@@ -55,13 +55,6 @@ router.patch(
 );
 router.get(
   "/users/me",
-  celebrate({
-    headers: Joi.object()
-      .keys({
-        authorization: Joi.string().required(),
-      })
-      .unknown(),
-  }),
   auth,
   getUsersMe
 );
