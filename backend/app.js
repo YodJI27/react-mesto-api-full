@@ -16,18 +16,11 @@ const app = express();
 const PORT = 3000;
 
 const corsOptions = {
-  origin: [
-    'http://localhost:3000',
-    'http://localhost:3001',
-    'http://mesto.students.nomoredomains.club',
-    'https://mesto.students.nomoredomains.club',
-    ],
+  origin: "*",
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-  allowedHeaders: ["Content-Type", "origin", "Authorization"],
   credentials: true,
 };
+app.use(cors(corsOptions));
 
 mongoose
   .connect("mongodb://localhost:27017/mestodb", {
@@ -39,7 +32,6 @@ mongoose
     console.log("Connected to DB");
   });
 
-app.use("*", cors(corsOptions));
 app.use(bodyParser.json());
 app.use(requestLogger);
 app.use("/", auth, userRouter);
