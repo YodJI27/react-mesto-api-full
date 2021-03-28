@@ -16,11 +16,13 @@ const app = express();
 const PORT = 3000;
 
 const corsOptions = {
-  origin: "*",
+  origin: ["*"],
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-  credentials: true,
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: ["Content-Type", "origin", "Authorization"],
 };
-app.use('*', cors(corsOptions));
+app.use("*", cors(corsOptions));
 
 mongoose
   .connect("mongodb://localhost:27017/mestodb", {
