@@ -20,7 +20,7 @@ const corsOptions = {
     'http://localhost:3000',
     'http://localhost:3001',
     'http://mesto.students.nomoredomains.club',
-    'https://mesto.students.nomoredomains.club/',
+    'https://mesto.students.nomoredomains.club',
     ],
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   preflightContinue: false,
