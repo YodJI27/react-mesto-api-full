@@ -16,7 +16,7 @@ const app = express();
 const PORT = 3000;
 
 const corsOptions = {
-  origin: "http://mesto.students.nomoredomains.club",
+  origin: "*",
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   credentials: true,
 };
