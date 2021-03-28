@@ -1,6 +1,6 @@
 {
   "name": "reactmesto",
-  "homepage": "https://yodji27.github.io/react-mesto-auth/",
+  "homepage": "./",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
