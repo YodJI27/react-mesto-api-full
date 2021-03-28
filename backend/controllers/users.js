@@ -53,7 +53,7 @@ module.exports.updatePrfoile = (req, res) => {
   const { id } = req.user._id;
   const { name, about } = req.body;
 
-  User.findByIdAndUpdate(id, { name, about }, { new: true })
+  User.findByIdAndUpdate({_id: id}, { name, about }, { new: true })
     .then((user) => {
       if (!user) {
         return res
