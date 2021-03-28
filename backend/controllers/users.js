@@ -75,6 +75,7 @@ module.exports.updatePrfoile = (req, res) => {
 module.exports.updateAvatar = (req, res) => {
   const { id } = req.user._id;
   const { avatar } = req.body;
+  console.log(req.user._id);
 
   User.findByIdAndUpdate({_id: id}, { avatar }, { new: true })
     .then((user) => {
