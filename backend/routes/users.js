@@ -76,10 +76,7 @@ router.patch(
     body: Joi.object().keys({
       avatar: Joi.string()
         .required()
-        .pattern(
-          /^https?\:\/\/(www\.)?[(a-z0-9\-\.\_~:/?#\[\]@!$&'\(\)*+,;=){1,}]+\.[a-z]{2,6}(([(a-z0-9\-\.\_~:/?#\[\]@!$&'\(\)*+,;=){1,}])+)?#?$/gi,
-          "url"
-        ),
+        .pattern(/^https?:\/\/[a-z0-9\W\_]+#?$/i, "url"),
     }),
   }),
   auth,
