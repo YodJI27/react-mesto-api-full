@@ -16,7 +16,7 @@ const app = express();
 const PORT = 3000;
 
 const corsOptions = {
-  origin: '*',
+  origin: "*",
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   preflightContinue: false,
   optionsSuccessStatus: 204,
@@ -34,7 +34,7 @@ mongoose
     console.log("Connected to DB");
   });
 
-app.use(cors(corsOptions));
+app.use("*", cors(corsOptions));
 app.use(bodyParser.json());
 app.use(requestLogger);
 app.use("/", auth, userRouter);
