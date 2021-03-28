@@ -31,9 +31,9 @@ app.use(requestLogger);
 app.use("/", auth, userRouter);
 app.use("/", auth, cardsRouter);
 
-app.get('/crash-test', () => {
+app.get("/crash-test", () => {
   setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
+    throw new Error("Сервер сейчас упадёт");
   }, 0);
 });
 
@@ -55,10 +55,9 @@ app.post(
       password: Joi.string().alphanum().required().min(8),
       name: Joi.string().min(2).max(30),
       about: Joi.string().min(2).max(30),
-      avatar: Joi.string().pattern(
-        /^https?\:\/\/(www\.)?[(a-z0-9\-\.\_~:/?#\[\]@!$&'\(\)*+,;=){1,}]+\.[a-z]{2,6}(([(a-z0-9\-\.\_~:/?#\[\]@!$&'\(\)*+,;=){1,}])+)?#?$/gi,
-        "url"
-      ),
+      avatar: Joi.string()
+        .required()
+        .pattern(/^https?:\/\/[a-z0-9\W\_]+#?$/i, "url"),
     }),
   }),
   createProfile
