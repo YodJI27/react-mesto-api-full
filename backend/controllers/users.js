@@ -92,7 +92,7 @@ module.exports.updateAvatar = (req, res) => {
       return res.status(500).send({ message: "Что-то пошло не так" });
     });
 };
-
+// return Promise.reject(new Error("Неправильные почта или пароль"));
 module.exports.login = (req, res) => {
   const { email, password } = req.body;
 
@@ -102,7 +102,7 @@ module.exports.login = (req, res) => {
       if (!user) {
         return Promise.reject(new Error("Неправильные почта или пароль"));
       }
-      return bcrypt(password, user.password);
+      return bcrypt.compare(password, user.password);
     })
     .then((result) => {
       if (!result) {
