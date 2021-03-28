@@ -29,24 +29,27 @@ module.exports.getProfile = (req, res) =>
 
 module.exports.createProfile = (req, res, next) => {
   const { name, about, avatar, email, password } = req.body;
-
-  bcrypt
-    .hash(password, 10)
-    .then((hash) => {
-      User.create({ name, about, avatar, email, password: hash })
-        .then((user) => {
-          res.status(200).send(user);
-        })
-        .catch((err) => {
-          if (err.name === "ValidationError") {
-            return res.status(400).send({ message: "Ошибка валидации" });
-          }
-          return res.status(500).send({ message: "Что-то пошло не так" });
-        });
-    })
-    .catch(next);
+  User.findOne({ email }).then((data) => {
+    if (data && data.email === email) {
+      return res.status(401).send("Пользователь уже создан");
+    }
+    bcrypt
+      .hash(password, 10)
+      .then((hash) => {
+        User.create({ name, about, avatar, email, password: hash, })
+          .then((user) => {
+            res.status(200).send(user);
+          })
+          .catch((err) => {
+            if (err.name === "ValidationError") {
+              return res.status(400).send({ message: "Ошибка валидации" });
+            }
+            return res.status(500).send({ message: "Что-то пошло не так" });
+          });
+      })
+      .catch(next);
+  });
 };
-
 module.exports.updatePrfoile = (req, res) => {
   const { id } = req.user._id;
   const { name, about } = req.body;
