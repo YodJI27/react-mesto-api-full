@@ -9,6 +9,7 @@ const NotFoundError = require("./errors/NotFoundError");
 const { errors } = require("celebrate");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 const { celebrate, Joi } = require("celebrate");
+const cors = require('cors');
 
 const app = express();
 
@@ -26,18 +27,18 @@ mongoose
 
 app.use(bodyParser.json());
 
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,PATCH,POST,DELETE');
-
-  next();
-});
 
 app.use(requestLogger);
-
 app.use("/", auth, userRouter);
 app.use("/", auth, cardsRouter);
+
+const corsOptions = {
+  origin: '*',
+  methods: ['GET', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'POST'],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 app.get("/crash-test", () => {
   setTimeout(() => {
