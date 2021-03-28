@@ -79,6 +79,7 @@ module.exports.updateAvatar = (req, res) => {
 
   User.findByIdAndUpdate({_id: id}, { avatar }, { new: true })
     .then((user) => {
+      console.log(_id)
       if (!user) {
         return res
           .status(404)
