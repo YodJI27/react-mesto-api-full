@@ -49,27 +49,40 @@ module.exports.createProfile = (req, res, next) => {
       .catch(next);
   });
 };
-module.exports.updatePrfoile = (req, res) => {
-  const { id } = req.user._id;
-  const { name, about } = req.body;
+// module.exports.updatePrfoile = (req, res, next) => {
+//   const userId = req.user._id;
+//   const { name, about } = req.body;
 
-  User.findByIdAndUpdate({_id: id}, { name, about }, { new: true })
-    .then((user) => {
-      if (!user) {
-        return res
-          .status(404)
-          .send({ message: "Пользователя c таким id не существует" });
-      }
-      return res.status(200).send(user);
-    })
-    .catch((err) => {
-      if (err.name === "ValidationError") {
-        return res.status(400).send({ message: "Ошибка валидации" });
-      } else if (err.name === "CastError") {
-        return res.status(400).send({ message: "Переданный id не корректен" });
-      }
-      return res.status(500).send({ message: "Что-то пошло не так" });
-    });
+//   User.findByIdAndUpdate({_id: userId}, { name, about }, { new: true })
+//     .then((user) => {
+//       if (!user) {
+//         return res
+//           .status(404)
+//           .send({ message: "Пользователя c таким id не существует" });
+//       }
+//       return res.status(200).send(user);
+//     })
+//     .catch((err) => {
+//       if (err.name === "ValidationError") {
+//         return res.status(400).send({ message: "Ошибка валидации" });
+//       } else if (err.name === "CastError") {
+//         return res.status(400).send({ message: "Переданный id не корректен" });
+//       }
+//       return res.status(500).send({ message: "Что-то пошло не так" });
+//     });
+// };
+// обновление пользовательских данных
+module.exports.updatePrfoile = (req, res, next) => {
+  const { name, about } = req.body;
+  const userId = req.user._id;
+
+  User.findOneAndUpdate(
+    { _id: userId },
+    { name, about },
+    { new: true },
+  )
+    .then((user) => res.status(200).send(user))
+    .catch(next);
 };
 
 module.exports.updateAvatar = (req, res) => {
