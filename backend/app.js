@@ -26,10 +26,6 @@ mongoose
 
 app.use(bodyParser.json());
 
-const requestLogger = expressWinston.logger({
-  transports: [new winston.transports.File({ filename: "request.log" })],
-  format: winston.format.json(),
-});
 app.use(requestLogger);
 
 app.use("/", auth, userRouter);
@@ -39,7 +35,7 @@ app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
-}); 
+});
 
 app.post(
   "/signin",
