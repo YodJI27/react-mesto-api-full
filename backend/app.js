@@ -43,7 +43,7 @@ app.get("/crash-test", () => {
     throw new Error("Сервер сейчас упадёт");
   }, 0);
 });
-
+// авторизация
 app.post(
   "/signin",
   celebrate({
@@ -54,6 +54,7 @@ app.post(
   }),
   login
 );
+// регистрация
 app.post(
   "/signup",
   celebrate({
