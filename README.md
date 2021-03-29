@@ -21,7 +21,8 @@
 
 **Cайт**
  
-[Ссылка на сайт](https://yodji27.github.io/react-mesto-auth/)
+[Ссылка на сайт](http://mesto.students.nomoredomains.club)
+[Ссылка на API](http://api.mesto.students.nomoredomains.club)
  
 **Автор**  
 Илья Шнырев  
