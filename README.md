@@ -14,6 +14,7 @@
 7) БЭМ Nested
 8) Адаптация ( в процессе )
 9) Анимации
+10) Yandex Cloud
  
 **Применяем шрифт**  
 
@@ -21,7 +22,8 @@
 
 **Cайт**
  
-[Ссылка на сайт](https://yodji27.github.io/react-mesto-auth/)
+[Ссылка на сайт](http://mesto.students.nomoredomains.club)  
+[Ссылка на API](http://api.mesto.students.nomoredomains.club)
  
 **Автор**  
 Илья Шнырев  
