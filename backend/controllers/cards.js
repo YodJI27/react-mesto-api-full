@@ -24,7 +24,7 @@ module.exports.deleteCards = (req, res, next) => {
       if (card.owner.toString() !== req.user._id) {
         return res.status(400).send({ message: "Недостаточно прав" });
       }
-      return Card.deleteOne({ _id: cardId })
+      return Cards.deleteOne({ _id: cardId })
         .then((response) => {
           if (response.deletedCount !== 0) {
             return res.status(200).send({ message: "Карточка удалена" });
@@ -50,7 +50,7 @@ module.exports.likeCard = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.dislikeCard = (req, res) => {
+module.exports.dislikeCard = (req, res, next) => {
   Cards.findByIdAndUpdate(
     req.params.cardId,
     { $pull: { likes: req.user._id } },
