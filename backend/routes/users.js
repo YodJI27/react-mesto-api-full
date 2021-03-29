@@ -50,7 +50,6 @@ router.get(
   getProfile
 );
 
-
 router.patch(
   "/users/me",
   celebrate({

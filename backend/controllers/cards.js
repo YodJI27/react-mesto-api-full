@@ -56,11 +56,11 @@ module.exports.dislikeCard = (req, res, next) => {
     { $pull: { likes: req.user._id } },
     { new: true }
   )
-  .then((card) => {
-    if (card) {
-      return res.status(200).send(card);
-    }
-    throw new NotFoundError("Нет карточки с таким id");
-  })
-  .catch(next);
+    .then((card) => {
+      if (card) {
+        return res.status(200).send(card);
+      }
+      throw new NotFoundError("Нет карточки с таким id");
+    })
+    .catch(next);
 };
