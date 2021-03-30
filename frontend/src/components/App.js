@@ -15,6 +15,7 @@ import AddPlacePopup from "./AddPlacePopup";
 import { Redirect, Route, Switch, useHistory } from "react-router";
 import { authApiToken, authApi } from "../utils/Auth";
 
+
 const App = (_) => {
   const history = new useHistory();
   const [isEditPlacePopupOpen, setIsEditPlace] = React.useState(false);
@@ -30,23 +31,18 @@ const App = (_) => {
   const [deleteCardsPopup, setDeleteCardsPopup] = React.useState(false);
   const [currentCardId, setCurrentCardId] = React.useState("");
 
-  React.useEffect((_) => {
-    api
-      .getInfo()
-      .then((res) => {
-        setCurrentUser(res);
+  React.useEffect(() => {
+    if(loggedIn){
+      Promise.all([api.getInfo(), api.receiveCardsInServer()])
+      .then(([user, items]) => {
+        setCurrentUser(user);      
+        setCards(items);
       })
-      .catch((error) => console.log(error));
-  }, []);
-
-  React.useEffect((_) => {
-    api
-      .receiveCardsInServer()
-      .then((data) => {
-        setCards(data);
+      .catch(err => {
+        console.log(err);
       })
-      .catch((error) => console.log(error));
-  }, []);
+    }
+  }, [loggedIn]); 
 
   // Постановка лайков и отправка на сервер
   function handleCardLike(card) {
@@ -97,10 +93,11 @@ const App = (_) => {
   function handleLoginUser(password, email) {
     authApi(password, email, "signin")
       .then((res) => {
-        if (res.token) {
+        if (res) {
           localStorage.setItem("jwt", res.token);
           setLoggedIn(true);
           history.push("/");
+          //window.location.reload();
         }
       })
       .catch((err) => console.log(err));
@@ -117,7 +114,9 @@ const App = (_) => {
     api
       .deleteCards(currentCardId)
       .then((_) => {
-        const newCardsList = cards.filter((value) => currentCardId !== value._id);
+        const newCardsList = cards.filter(
+          (value) => currentCardId !== value._id
+        );
         setCards(newCardsList);
         closeAllPopups();
       })

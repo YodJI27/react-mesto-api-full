@@ -22,7 +22,7 @@ function Header(props) {
       {props.loggedIn ? (
         <div className="header__box">
           <p className="header__email">{props.headerEmail}</p>
-          <a className="header__title" href="*" onClick={props.logOut}>Выйти</a>
+          <a className="header__title" href="##" onClick={props.logOut}>Выйти</a>
         </div>
       ) : (
         linkSwitch()

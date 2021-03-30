@@ -15,6 +15,8 @@ const AddPlacePopup = (props) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     props.onAddPlace(cardName, cardLink);
+    setCardName('');
+    setCardLink('');
   };
 
   return (
