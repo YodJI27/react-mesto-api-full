@@ -22,8 +22,8 @@
 
 **Cайт**
  
-[Ссылка на сайт](http://mesto.students.nomoredomains.club)  
-[Ссылка на API](http://api.mesto.students.nomoredomains.club)  
+[Ссылка на сайт](https://mesto.students.nomoredomains.club)  
+[Ссылка на API](https://api.mesto.students.nomoredomains.club)  
 IP: 178.154.207.189
  
 **Автор**  

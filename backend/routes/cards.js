@@ -1,16 +1,16 @@
-const router = require("express").Router();
-const auth = require("../middlewares/auth");
-const { celebrate, Joi } = require("celebrate");
+const router = require('express').Router();
+const { celebrate, Joi } = require('celebrate');
+const auth = require('../middlewares/auth');
 const {
   likeCard,
   dislikeCard,
   getCards,
   createCards,
   deleteCards,
-} = require("../controllers/cards");
+} = require('../controllers/cards');
 
 router.get(
-  "/cards",
+  '/cards',
   celebrate({
     headers: Joi.object()
       .keys({
@@ -19,10 +19,10 @@ router.get(
       .unknown(),
   }),
   auth,
-  getCards
+  getCards,
 );
 router.post(
-  "/cards",
+  '/cards',
   celebrate({
     headers: Joi.object()
       .keys({
@@ -33,14 +33,14 @@ router.post(
       name: Joi.string().min(2).max(30),
       link: Joi.string()
         .required()
-        .pattern(/^https?:\/\/[a-z0-9\W\_]+#?$/i, "url"),
+        .pattern(/^https?:\/\/[a-z0-9\W]+#?$/i, 'url'),
     }),
   }),
   auth,
-  createCards
+  createCards,
 );
 router.delete(
-  "/cards/:cardId",
+  '/cards/:cardId',
   celebrate({
     headers: Joi.object()
       .keys({
@@ -52,10 +52,10 @@ router.delete(
     }),
   }),
   auth,
-  deleteCards
+  deleteCards,
 );
 router.put(
-  "/cards/:cardId/likes",
+  '/cards/:cardId/likes',
   celebrate({
     headers: Joi.object()
       .keys({
@@ -67,10 +67,10 @@ router.put(
     }),
   }),
   auth,
-  likeCard
+  likeCard,
 );
 router.delete(
-  "/cards/:cardId/likes",
+  '/cards/:cardId/likes',
   celebrate({
     headers: Joi.object()
       .keys({
@@ -82,7 +82,7 @@ router.delete(
     }),
   }),
   auth,
-  dislikeCard
+  dislikeCard,
 );
 
 module.exports = router;

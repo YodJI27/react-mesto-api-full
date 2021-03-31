@@ -1,16 +1,16 @@
-const router = require("express").Router();
-const auth = require("../middlewares/auth");
+const router = require('express').Router();
+const { celebrate, Joi } = require('celebrate');
+const auth = require('../middlewares/auth');
 const {
   getUsers,
   getProfile,
   updatePrfoile,
   updateAvatar,
   getUsersMe,
-} = require("../controllers/users");
-const { celebrate, Joi } = require("celebrate");
+} = require('../controllers/users');
 
 router.get(
-  "/users",
+  '/users',
   celebrate({
     headers: Joi.object()
       .keys({
@@ -19,10 +19,10 @@ router.get(
       .unknown(),
   }),
   auth,
-  getUsers
+  getUsers,
 );
 router.get(
-  "/users/me",
+  '/users/me',
   celebrate({
     headers: Joi.object()
       .keys({
@@ -31,11 +31,11 @@ router.get(
       .unknown(),
   }),
   auth,
-  getUsersMe
+  getUsersMe,
 );
 
 router.get(
-  "/users/:id",
+  '/users/:id',
   celebrate({
     headers: Joi.object()
       .keys({
@@ -47,11 +47,11 @@ router.get(
     }),
   }),
   auth,
-  getProfile
+  getProfile,
 );
 
 router.patch(
-  "/users/me",
+  '/users/me',
   celebrate({
     headers: Joi.object()
       .keys({
@@ -64,11 +64,11 @@ router.patch(
     }),
   }),
   auth,
-  updatePrfoile
+  updatePrfoile,
 );
 
 router.patch(
-  "/users/me/avatar",
+  '/users/me/avatar',
   celebrate({
     headers: Joi.object()
       .keys({
@@ -78,11 +78,11 @@ router.patch(
     body: Joi.object().keys({
       avatar: Joi.string()
         .required()
-        .pattern(/^https?:\/\/[a-z0-9\W\_]+#?$/i, "url"),
+        .pattern(/^https?:\/\/[a-z0-9\W]+#?$/i, 'url'),
     }),
   }),
   auth,
-  updateAvatar
+  updateAvatar,
 );
 
 module.exports = router;
