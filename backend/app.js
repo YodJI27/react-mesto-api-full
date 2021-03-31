@@ -77,13 +77,13 @@ app.use((_) => {
 app.use(errorLogger);
 app.use(errors());
 app.use((err, req, res, next) => {
-  if (err.status) {
-    res.status(err.status).send(err.message);
-    return;
-  }
+  const { statusCode = 500, message } = err;
+
   res
-    .status(500)
-    .send({ message: `На сервере произошла ошибка: ${err.message}` });
-  next();
+    .status(statusCode)
+    .send({
+      message: statusCode === 500
+        ? 'На сервере произошла ошибка'
+        : message,
+    });
 });
-app.listen(PORT);
