@@ -55,7 +55,7 @@ const userSchema = new mongoose.Schema({
   },
 });
 // в схеме select: false не срабатывает, поэтому модифицируем объект ответа
-userSchema.methods.toJSON = function () {
+userSchema.methods.toJSON = function findUser() {
   const obj = this.toObject();
   delete obj.password;
   return obj;
