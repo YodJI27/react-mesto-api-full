@@ -31,7 +31,7 @@ router.post(
       name: Joi.string().min(2).max(30),
       link: Joi.string()
         .required()
-        .pattern(/^https?\:\/\/(www\.)?[(a-z0-9\-\.\_~:/?#\[\]@!$&'\(\)*+,;=){1,}]+\.[a-z]{2,6}(([(a-z0-9\-\.\_~:/?#\[\]@!$&'\(\)*+,;=){1,}])+)?#?$/gi, 'url'), // eslint-disable-line
+        .pattern(/^https?:\/\/[a-z0-9\W\_]+#?$/i, 'url'), // eslint-disable-line
     }),
   }),
   createCards,
