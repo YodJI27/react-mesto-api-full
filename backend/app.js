@@ -30,11 +30,6 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useCreateIndex: true,
   useFindAndModify: false,
 });
-app.get('/crash-test', () => {
-  setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
-  }, 0);
-});
 
 app.use(bodyParser.json());
 app.use(requestLogger);
@@ -78,5 +73,11 @@ app.use((err, req, res) => {
     message: statusCode === 500 ? 'На сервере произошла ошибка' : message,
   });
 });
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 
 app.listen(PORT);
