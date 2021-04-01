@@ -66,7 +66,7 @@ app.post(
 app.use('/', auth, userRouter);
 app.use('/', auth, cardsRouter);
 app.use(() => {
-  throw new NotFoundError({ message: 'Запрашиваемый ресурс не найден' });
+  throw new NotFoundError('"Запрашиваемый ресурс не найден"');
 });
 app.use(errorLogger);
 app.use(errors());
@@ -79,3 +79,4 @@ app.use((err, req, res) => {
 });
 
 app.listen(PORT);
+ 
