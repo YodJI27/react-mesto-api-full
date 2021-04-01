@@ -1,0 +1,8 @@
+.popup__button_active_not {
+    background: #ffffff;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 2px;
+    cursor: auto;
+    color: #000000; 
+}
