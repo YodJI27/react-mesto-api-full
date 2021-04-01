@@ -1,0 +1,15 @@
+.tool__button {
+    background-image: url("../../../images/close.svg");
+    background-position: center;
+    background-size: cover;
+    background-color: rgba(0,0,0,0);
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: -32px;
+    right: -32px;
+    border: none;
+    cursor: pointer;
+    transition: opacity .5s linear;
+    outline: none;
+}
