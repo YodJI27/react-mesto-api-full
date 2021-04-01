@@ -8,13 +8,14 @@
 1) HTML5,CSS3, JS ES6
 2) React
 3) API
-4) Webpack
-5) Grid
-6) Flex
-7) БЭМ Nested
-8) Адаптация ( в процессе )
-9) Анимации
-10) Yandex Cloud
+4) Node.js / express.js
+5) Webpack
+6) Grid
+7) Flex
+8) БЭМ Nested
+9) Адаптация ( в процессе )
+10) Анимации
+11) Yandex Cloud
  
 **Применяем шрифт**  
 
