@@ -73,7 +73,7 @@ router.patch(
     body: Joi.object().keys({
       avatar: Joi.string()
         .required()
-        .pattern(/^https?:\/\/[a-z0-9\W]+#?$/i, 'url'),
+        .pattern(/^https?:\/\/[a-z0-9\W\_]+#?$/i, 'url'), // eslint-disable-line
     }),
   }),
   updateAvatar,
