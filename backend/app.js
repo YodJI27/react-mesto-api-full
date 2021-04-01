@@ -65,7 +65,7 @@ app.post(
 );
 app.use('/', auth, userRouter);
 app.use('/', auth, cardsRouter);
-app.use('*', () => {
+app.use(() => {
   throw new NotFoundError({ message: 'Запрашиваемый ресурс не найден' });
 });
 app.use(errorLogger);
