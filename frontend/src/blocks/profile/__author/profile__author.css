@@ -1,0 +1,29 @@
+.profile__author {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    font-family: Inter, 'Arial', 'Helvetica';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 56px;
+    color: #ffffff;
+    margin: 18px 0 16px 0;
+    padding: 0;
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    overflow: hidden;
+}
+@media screen and (max-width: 400px)
+{
+    .profile__author {
+        max-width: 201px;
+        text-align: center;
+        font-size: 27px;
+        margin-bottom: 0;
+        margin-top: 10px;
+    }
+}
