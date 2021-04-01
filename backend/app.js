@@ -14,7 +14,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
 
-const { PORT = 3001 } = process.env;
+const PORT = 3001;
 
 const corsOptions = {
   origin: ['*'],
