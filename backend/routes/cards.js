@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
-const auth = require('../middlewares/auth');
 const {
   likeCard,
   dislikeCard,
@@ -18,7 +17,6 @@ router.get(
       })
       .unknown(),
   }),
-  auth,
   getCards,
 );
 router.post(
@@ -36,7 +34,6 @@ router.post(
         .pattern(/^https?:\/\/[a-z0-9\W]+#?$/i, 'url'),
     }),
   }),
-  auth,
   createCards,
 );
 router.delete(
@@ -51,7 +48,6 @@ router.delete(
       cardId: Joi.string().alphanum().length(24).required(),
     }),
   }),
-  auth,
   deleteCards,
 );
 router.put(
@@ -66,7 +62,6 @@ router.put(
       cardId: Joi.string().alphanum().length(24).required(),
     }),
   }),
-  auth,
   likeCard,
 );
 router.delete(
@@ -81,7 +76,6 @@ router.delete(
       cardId: Joi.string().alphanum().length(24).required(),
     }),
   }),
-  auth,
   dislikeCard,
 );
 

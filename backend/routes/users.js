@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
-const auth = require('../middlewares/auth');
 const {
   getUsers,
   getProfile,
@@ -18,7 +17,6 @@ router.get(
       })
       .unknown(),
   }),
-  auth,
   getUsers,
 );
 router.get(
@@ -30,7 +28,6 @@ router.get(
       })
       .unknown(),
   }),
-  auth,
   getUsersMe,
 );
 
@@ -46,7 +43,6 @@ router.get(
       id: Joi.string().alphanum().required().length(24),
     }),
   }),
-  auth,
   getProfile,
 );
 
@@ -63,7 +59,6 @@ router.patch(
       about: Joi.string().required(),
     }),
   }),
-  auth,
   updatePrfoile,
 );
 
@@ -81,7 +76,6 @@ router.patch(
         .pattern(/^https?:\/\/[a-z0-9\W]+#?$/i, 'url'),
     }),
   }),
-  auth,
   updateAvatar,
 );
 
