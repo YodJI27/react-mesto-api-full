@@ -198,11 +198,11 @@ const App = (_) => {
             handleCardLike={handleCardLike}
             handleCardDelete={handleConfirmClick}
           />
-          <Route path="/sign-up">
-            <Register handleRegisterUser={handleRegisterUser} />
-          </Route>
           <Route path="/sign-in">
             <Login handleLoginUser={handleLoginUser} />
+          </Route>
+          <Route path="/sign-up">
+            <Register handleRegisterUser={handleRegisterUser} />
           </Route>
           <Route exact path="/">
             {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
