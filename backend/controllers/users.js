@@ -42,11 +42,11 @@ module.exports.login = (req, res, next) => {
     .select('+password')
     .then((user) => {
       if (!user) {
-        throw new UnauthorizedError({message: 'Неправильные почта или пароль'}); // 401
+        throw new UnauthorizedError('Неправильные почта или пароль'); // 401
       }
       return bcrypt.compare(password, user.password).then((matched) => {
         if (!matched) {
-          throw new UnauthorizedError({message: 'Неправильные почта или пароль'}); // 401
+          throw new UnauthorizedError('Неправильные почта или пароль'); // 401
         }
         const { JWT_SECRET } = process.env;
         const NODE_ENV = 'dev';
