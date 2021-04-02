@@ -14,7 +14,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
 
-const { PORT = 3000 } = process.env;
+const PORT = 3000;
 
 const corsOptions = {
   origin: ['*'],
@@ -58,14 +58,14 @@ app.post(
       password: Joi.string().alphanum().required(),
       name: Joi.string().min(2).max(30),
       about: Joi.string().min(2).max(30),
-      avatar: Joi.string().pattern(/^(http|https):\/\/[^ "]+$/), // eslint-disable-line
+      avatar: Joi.string().pattern(/^https?:\/\/[a-z0-9\W]+#?$/i, 'url'),
     }),
   }),
   createProfile,
 );
 app.use('/', auth, userRouter);
 app.use('/', auth, cardsRouter);
-app.use('/*', () => {
+app.use(() => {
   throw new NotFoundError('"Запрашиваемый ресурс не найден"');
 });
 app.use(errorLogger);
