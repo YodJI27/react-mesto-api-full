@@ -1,0 +1,13 @@
+.profile__button {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 0 auto;
+    padding: 0;
+}
+@media screen and (max-width: 929px)
+{
+    .profile__button {
+        justify-content: center;
+    }
+}

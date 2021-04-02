@@ -23,7 +23,7 @@ module.exports.deleteCards = (req, res, next) => {
     .orFail(new NotFoundError('Карточка не найдена')) // 404
     .then((card) => {
       if (card.owner.toString() !== req.user._id) {
-        throw new DeletingSomeoneСard('Недостаточноп прав'); // 403
+        throw new DeletingSomeoneСard('Недостаточно прав'); // 403
       }
       return Cards.deleteOne({ _id: cardId })
         .then(() => res.status(200).send({ message: 'Карточка удалена' }))

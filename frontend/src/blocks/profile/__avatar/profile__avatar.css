@@ -1,0 +1,19 @@
+
+.profile__avatar {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    opacity: 0;
+    outline: none;
+}
+.profile__avatar:hover {
+    transition: opacity 1s linear;
+    opacity: 0.8;
+    background: url("../../../images/vector.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(0,0,0, 0.8);
+}
