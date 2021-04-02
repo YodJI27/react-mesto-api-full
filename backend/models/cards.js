@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const { ObjectId } = require("mongodb");
+const mongoose = require('mongoose');
+const { ObjectId } = require('mongodb');
 
 const cardSchema = new mongoose.Schema({
   name: {
@@ -15,7 +15,7 @@ const cardSchema = new mongoose.Schema({
       validator(v) {
         return /^https?:\/\/[a-z0-9\W\_]+#?$/i.test(v); // eslint-disable-line
       },
-      message: "Ошибка валидации URL",
+      message: 'Ошибка валидации URL',
     },
   },
   owner: {
@@ -32,4 +32,4 @@ const cardSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("card", cardSchema);
+module.exports = mongoose.model('card', cardSchema);
