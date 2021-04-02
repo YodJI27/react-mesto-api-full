@@ -1,6 +1,6 @@
 const Cards = require('../models/cards');
 const NotFoundError = require('../errors/NotFoundError');
-const IdenticalDataErrors = require('../errors/IdenticalDataErrors');
+const DeletingSomeoneСard = require('../errors/DeletingSomeoneСard');
 
 module.exports.getCards = (req, res, next) => {
   Cards.find({})
@@ -23,7 +23,7 @@ module.exports.deleteCards = (req, res, next) => {
     .orFail(new NotFoundError('Карточка не найдена')) // 404
     .then((card) => {
       if (card.owner.toString() !== req.user._id) {
-        throw new IdenticalDataErrors('Недостаточно прав'); // 409
+        throw new DeletingSomeoneСard('Недостаточноп прав'); // 403
       }
       return Cards.deleteOne({ _id: cardId })
         .then(() => res.status(200).send({ message: 'Карточка удалена' }))
