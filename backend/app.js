@@ -58,7 +58,7 @@ app.post(
       password: Joi.string().alphanum().required(),
       name: Joi.string().min(2).max(30),
       about: Joi.string().min(2).max(30),
-      avatar: Joi.string().pattern(/^https?:\/\/[a-z0-9\W\_]+#?$/i, 'url'), // eslint-disable-line
+      avatar: Joi.string().pattern(/^(http|https):\/\/[^ "]+$/), // eslint-disable-line
     }),
   }),
   createProfile,
