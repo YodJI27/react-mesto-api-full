@@ -79,6 +79,4 @@ app.use((err, req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(JWT_SECRET);
-});
+app.listen(PORT);
