@@ -3,9 +3,7 @@ const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const User = require("../models/user");
 const NotFoundError = require("../errors/NotFoundError");
-const BadRequestError = require("../errors/BadRequestError");
 const UnauthorizedError = require("../errors/UnauthorizedError");
-const ServerErrors = require("../errors/ServerErrors");
 const IdenticalDataErrors = require("../errors/IdenticalDataErrors");
 
 module.exports.getUsers = (req, res, next) => {
@@ -13,18 +11,15 @@ module.exports.getUsers = (req, res, next) => {
     .then((users) => {
       res.status(200).send(users);
     })
-    .catch(() => {
-      throw new ServerErrors("Что-то пошло не так");
-    })
     .catch(next);
 };
 
 module.exports.getProfile = (req, res, next) => {
-  const { id } = req.params.id;
+  const { id } = req.params;
   User.findById({ id })
     .then((user) => {
       if (!user) {
-        throw new NotFoundError("Нет пользователя с таким id");
+        throw new NotFoundError("Нет пользователя с таким id"); // 404
       }
       return res.status(200).send(user);
     })
