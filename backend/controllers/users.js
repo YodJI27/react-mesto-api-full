@@ -15,8 +15,7 @@ module.exports.getUsers = (req, res, next) => {
 };
 
 module.exports.getProfile = (req, res, next) => {
-  const { id } = req.params;
-  User.findById({ id })
+  User.findById({ _id: req.params.id })
     .then((user) => {
       if (!user) {
         throw new NotFoundError("Нет пользователя с таким id"); // 404
