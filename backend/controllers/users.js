@@ -1,12 +1,12 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const mongoose = require('mongoose');
-const User = require('../models/user');
-const NotFoundError = require('../errors/NotFoundError');
-const BadRequestError = require('../errors/BadRequestError');
-const UnauthorizedError = require('../errors/UnauthorizedError');
-const ServerErrors = require('../errors/ServerErrors');
-const IdenticalDataErrors = require('../errors/IdenticalDataErrors');
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
+const User = require("../models/user");
+const NotFoundError = require("../errors/NotFoundError");
+const BadRequestError = require("../errors/BadRequestError");
+const UnauthorizedError = require("../errors/UnauthorizedError");
+const ServerErrors = require("../errors/ServerErrors");
+const IdenticalDataErrors = require("../errors/IdenticalDataErrors");
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
@@ -14,24 +14,19 @@ module.exports.getUsers = (req, res, next) => {
       res.status(200).send(users);
     })
     .catch(() => {
-      throw new ServerErrors('Что-то пошло не так');
+      throw new ServerErrors("Что-то пошло не так");
     })
     .catch(next);
 };
 
 module.exports.getProfile = (req, res, next) => {
-  User.findOne({ _id: req.params.id })
+  const { id } = req.params.id;
+  User.findById({ id })
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('Нет пользователя с таким id');
+        throw new NotFoundError("Нет пользователя с таким id");
       }
       return res.status(200).send(user);
-    })
-    .catch((err) => {
-      if (err.name === 'CastError') {
-        throw new BadRequestError('Переданный id не корректен');
-      }
-      throw new ServerErrors('Что-то пошло не так');
     })
     .catch(next);
 };
@@ -39,21 +34,21 @@ module.exports.getProfile = (req, res, next) => {
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
   User.findOne({ email })
-    .select('+password')
+    .select("+password")
     .then((user) => {
       if (!user) {
-        throw new UnauthorizedError('Неправильные почта или пароль'); // 401
+        throw new UnauthorizedError("Неправильные почта или пароль"); // 401
       }
       return bcrypt.compare(password, user.password).then((matched) => {
         if (!matched) {
-          throw new UnauthorizedError('Неправильные почта или пароль'); // 401
+          throw new UnauthorizedError("Неправильные почта или пароль"); // 401
         }
         const { JWT_SECRET } = process.env;
-        const NODE_ENV = 'dev';
+        const NODE_ENV = "dev";
         const token = jwt.sign(
           { _id: user._id },
-          NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
-          { expiresIn: '7d' },
+          NODE_ENV === "production" ? JWT_SECRET : "dev-secret",
+          { expiresIn: "7d" }
         );
         return res.status(200).send({ token });
       });
@@ -61,14 +56,12 @@ module.exports.login = (req, res, next) => {
     .catch(next);
 };
 module.exports.createProfile = (req, res, next) => {
-  const {
-    name, about, avatar, email, password,
-  } = req.body;
+  const { name, about, avatar, email, password } = req.body;
 
   User.findOne({ email })
     .then((data) => {
       if (data && data.email === email) {
-        throw new IdenticalDataErrors('Пользователь с таким Email существует');
+        throw new IdenticalDataErrors("Пользователь с таким Email существует");
       }
       bcrypt
         .hash(password, 10)
@@ -113,7 +106,7 @@ module.exports.getUsersMe = (req, res, next) => {
   User.findById(currentUserId)
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('Нет пользователя с таким id'); // 404
+        throw new NotFoundError("Нет пользователя с таким id"); // 404
       }
       return res.status(200).send(user);
     })
