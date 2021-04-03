@@ -1,0 +1,33 @@
+.popup__text {
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    font-family: Inter, 'Arial', 'Helvetica';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    margin: 30px 0 5px 36px;
+    padding: 0 0 13px 0;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.popup__text:first-of-type {
+    margin-top: 0px;
+}
+
+@media screen and (max-width: 549px)
+{
+    .popup__text {
+        margin-left: 10px;
+        max-width: 240px;
+    }
+}
