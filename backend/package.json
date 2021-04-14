@@ -9,7 +9,7 @@
     "dev": "nodemon app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ilya Shnyrev",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^7.23.0",
